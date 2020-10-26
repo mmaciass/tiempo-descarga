@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="166.703" height="93.162" viewBox="0 0 166.703 93.162">
+    <defs>
+        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ff1d00"/>
+            <stop offset="1" stop-color="#800f00"/>
+        </linearGradient>
+        <filter id="download" x="0" y="0" width="166.703" height="93.162" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-opacity="0.161"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#download)">
+        <path id="download-2" d="M153,55.4,79,88.319,5,55.4l74,74Z" transform="translate(4.35 -48.94)" stroke="#fff"
+              stroke-width="1" fill="url(#linear-gradient)"/>
+    </g>
+</svg>

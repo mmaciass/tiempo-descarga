@@ -1,0 +1,47 @@
+:root {
+    --logo-margin-top: 100px;
+
+    --width-100p: 100px;
+    --width-90p: calc(var(--width-100p) * 0.9);
+    --width-85p: calc(var(--width-100p) * 0.85);
+    --width-80p: calc(var(--width-100p) * 0.8);
+    --width-75p: calc(var(--width-100p) * 0.75);
+}
+
+.element-logo {
+    display: flex;
+    position: absolute;
+    top: var(--logo-margin-top);
+}
+
+.arrows {
+    width: var(--width-80p);
+    left: calc(50vw - calc(var(--width-80p) * 0.5));
+    top: calc(var(--logo-margin-top) + 60px);
+    z-index: 3;
+}
+
+.letter {
+    position: relative;
+    top: calc(var(--logo-margin-top) + 120px) !important;
+}
+
+.time-down {
+    width: var(--width-100p);
+    left: calc(50vw - calc(var(--width-100p) * 0.5));
+    top: calc(var(--logo-margin-top) + 20px);
+    z-index: 1;
+}
+
+
+.time-up {
+    width: var(--width-85p);
+    left: calc(50vw - calc(var(--width-85p) * 0.5));
+    z-index: 2;
+}
+
+.time-up-center {
+    width: var(--width-75p);
+    left: calc(50vw - calc(var(--width-75p) * 0.5));
+    z-index: 0;
+}
