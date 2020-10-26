@@ -16,6 +16,8 @@ import DialogFormCustomSpeedTD from './DialogFormCustomSpeedTD';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
+import Slide from '@material-ui/core/Slide';
+import Grow from '@material-ui/core/Grow';
 
 const useStyle = makeStyles((theme) => ({
   listItem: {
@@ -28,45 +30,45 @@ const ListItemCustomSpeedTD = ({ custom, ...props }) => {
   const classes = useStyle();
   const [overCustom, setOverCustom] = useState(false);
 
-  if (custom.hide)
-    return (
-      <React.Fragment/>
-    );
-
   return (
     <Box {...props}>
-      {custom.enable
-        ? (<ListItem className={classes.listItem} onMouseEnter={() => setOverCustom(true)}
-                     onMouseLeave={() => setOverCustom(false)}>
-          <ListItemAvatar>
-            <Avatar><IconTypeTD type="Custom"/></Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Personalizado"
-                        secondary={Convert.bitsToSpeedString(custom.speedCustom * custom.speedUnitCustom)}/>
-          <ListItemSecondaryAction onMouseEnter={() => setOverCustom(true)} onMouseLeave={() => setOverCustom(false)}>
-            {overCustom
-              ? (<Tooltip title="Eliminar">
-                <IconButton edge="end" aria-label="delete"
-                            onClick={async () => {
-                              await ProxyStore.dispatch({ type: SET_ENABLE_CUSTOM, payload: false });
-                              setOverCustom(false);
-                            }}>
-                  <DeleteIcon/>
-                </IconButton>
-              </Tooltip>)
-              : Convert.secondsToTimeString(custom.delayCustom)}
-          </ListItemSecondaryAction>
-        </ListItem>)
-        : (<Box>
-          <ListItem className={classes.listItem} button
-                    onClick={() => (ProxyStore.dispatch({ type: SET_OPEN_DIALOG_CUSTOM, payload: true }))}>
+      <Grow direction="right" timeout={{ enter: 400, exit: 200 }} in={custom.enable && !custom.hide}
+            style={{ position: 'absolute', width: '100%' }}>
+        <Box>
+          <ListItem className={classes.listItem} onMouseEnter={() => setOverCustom(true)}
+                    onMouseLeave={() => setOverCustom(false)}>
             <ListItemAvatar>
-              <Avatar><AddCircleOutlineIcon/></Avatar>
+              <Avatar><IconTypeTD type="Custom"/></Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Agregar" secondary="Personalizado"/>
+            <ListItemText primary="Personalizado"
+                          secondary={Convert.bitsToSpeedString(custom.speedCustom * custom.speedUnitCustom)}/>
+            <ListItemSecondaryAction onMouseEnter={() => setOverCustom(true)} onMouseLeave={() => setOverCustom(false)}>
+              {overCustom
+                ? (<Tooltip title="Eliminar">
+                  <IconButton edge="end" aria-label="delete"
+                              onClick={async () => {
+                                await ProxyStore.dispatch({ type: SET_ENABLE_CUSTOM, payload: false });
+                                setOverCustom(false);
+                              }}>
+                    <DeleteIcon/>
+                  </IconButton>
+                </Tooltip>)
+                : Convert.secondsToTimeString(custom.delayCustom)}
+            </ListItemSecondaryAction>
           </ListItem>
-          <DialogFormCustomSpeedTD/>
-        </Box>)}
+        </Box>
+      </Grow>
+
+      <Slide direction="left" timeout={{ enter: 400, exit: 200 }} in={!custom.enable && !custom.hide}>
+        <ListItem className={classes.listItem} button
+                  onClick={() => (ProxyStore.dispatch({ type: SET_OPEN_DIALOG_CUSTOM, payload: true }))}>
+          <ListItemAvatar>
+            <Avatar><AddCircleOutlineIcon/></Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Agregar" secondary="Personalizado"/>
+        </ListItem>
+      </Slide>
+      <DialogFormCustomSpeedTD/>
     </Box>
   );
 };
