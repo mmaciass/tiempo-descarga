@@ -1,6 +1,6 @@
 {
   "name": "tiempo-descarga",
-  "version": "0.7.0",
+  "version": "0.7.3",
   "description": "Extensión para calcular el tiempo que puede demorar un archivo en descargarse.",
   "license": "MIT",
   "author": {
